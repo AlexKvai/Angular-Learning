@@ -13,22 +13,21 @@ export class AppComponent implements OnInit {
   title = 'angular app';
   // products: IProduct[] = [];
   loading = false;
-  products$: Observable<IProduct[]>;
+  // products$: Observable<IProduct[]>;
   term = '';
 
   constructor(
-    private productsService: ProductService,
+    public productsService: ProductService,
     public modalService: ModalService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
-    this.products$ = this.productsService
-      .getAll()
-      .pipe(tap(() => (this.loading = false)));
-    // this.productsService.getAll().subscribe((products) => {
-    //   this.products = products;
-    //   this.loading = false;
-    // });
+    // this.products$ = this.productsService
+    //   .getAll()
+    //   .pipe(tap(() => (this.loading = false)));
+    this.productsService.getAll().subscribe(() => {
+      this.loading = false;
+    });
   }
 }
