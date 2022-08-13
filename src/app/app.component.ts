@@ -1,3 +1,4 @@
+import { ModalService } from './services/modal.service';
 import { Observable, tap } from 'rxjs';
 import { ProductService } from './services/product.service';
 import { IProduct } from './models/product';
@@ -15,7 +16,10 @@ export class AppComponent implements OnInit {
   products$: Observable<IProduct[]>;
   term = '';
 
-  constructor(private productsService: ProductService) {}
+  constructor(
+    private productsService: ProductService,
+    public modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
